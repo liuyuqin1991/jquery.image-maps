@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+<title>Image Maps test</title>
+<!-- 
+<script type="text/javascript" language="javascript" src="./require.js"></script>
+-->
+<script type="text/javascript" language="javascript" src="./jquery-1.9.1.min.js"></script>
+<script type="text/javascript" language="javascript" src="./jquery.image-maps5.0.js"></script>
+<link rel="stylesheet" type="text/css" href="./imageHotAreaStyle.css">
+</head>
+<body>
+<div class="hot_area" id = "areaContent">
+     <!-- 1.图片url显示部分：-->
+     <input id="" type="text"class="" readonly="readonly" value="">
+
+    <!-- 2.图片展示部分：-->
+     <div class="" name="imageMap" id="image_map">
+       <img src=""  ref="imageMap" id="photo"/>
+     </div>
+
+    <!--3.添加热区对应编辑链接列表渲染部分，目前需两者选一：
+     1)tablebody样式：-->
+     <table><tbody id="areaItems"> </tbody></table>
+
+    <!-- 2)ul样式：
+     <ul id="areaItems"></ul>-->
+
+    <!-- 4.添加热区按钮部分：-->
+     <p><a id="add_hot_area" href="JavaScript:;" class="">添加热区</a> &nbsp; <a id="" href="JavaScript:viewMap();" class="">查看热区</a></p>
+	 <p></p>
+
+    <!-- 5.热区数据存储（隐藏）：-->
+     <input type="text" class="" id="hotAreas" name="hotAreas"  value=''>
+
+    <!-- 6.可添加热区数量与还可添加热区数量实时显示（可选）：-->
+     <p><span class="">已添加已添加<b class="added_amount">0</b>个热区， 还可添加<b class="remain_amount">X</b>个热区</span></p>
+</div>
+
+<script type="text/javascript" language="javascript">
+
+$(document).ready(function() {
+//$(function(){
+	var setting = {
+		maxAmount:5,
+		tag:'tr',
+		params:{
+			//'areaLink':'添加热区时的默认值',
+			//'areaType':'添加热区时的默认值'
+		},
+		//proportion:"0.5",
+		domCallBack:function(params){
+			//console.log(params);
+			return "<td>链接：<input type='text' value='http://baidu.com'/></td>"
+		}
+	}
+
+	//初始化加载
+	var areas = "[{'areaTitle':'热区1','areaLink':'','areaMapInfo':'0,0,120,80'},{'areaTitle':'热区 2','areaLink':'','areaMapInfo':'260,13,353,112'}]";
+	$("#hotAreas").val(areas);  
+
+	//$('#hotAreas').val('');     //清空热区数据
+	//$('#image_map').imageMaps(setting);
+	//imageMaps.originalManual("./size.jpg",setting,true);
+	imageMaps.proportionNoSameManual("./bg.png",setting,1,1,true);
+	
+	//"hotAreas" : "[{'areaTitle':'热区1','areaLink':'','areaMapInfo':'0,0,90,30'},{'areaTitle':'热区 2','areaLink':'','areaMapInfo':'260,13,353,112'}]"
+});
+
+function viewMap(){
+	alert($('#areaItems').html());
+	//$('#image_map').getAreaMapInfo(item);
+}
+
+
+</script>
+
+</body>
+</html>
